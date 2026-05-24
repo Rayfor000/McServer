@@ -1,0 +1,573 @@
+services:
+    mcs_plugin:
+        container_name: divinemc
+        image: itzg/minecraft-server:java25-graalvm
+        tty: true
+        stdin_open: true
+        ports: ['25585:25565']
+        volumes: ['./data/mc:/data']
+
+        environment:
+            UID: 1000
+            GID: 1000
+
+            # --- 基礎核心設定 ---
+            EULA: true
+            TYPE: CUSTOM
+            CUSTOM_SERVER: https://files.bxteam.org/divinemc/versions/1.21.11/27/divinemc-1.21.11-27.jar
+            # VERSION: 1.21.11
+            MEMORY: 6144M
+            JVM_OPTS: --add-modules=jdk.incubator.vector
+            USE_AIKAR_FLAGS: false
+            USE_MEOWICE_FLAGS: true
+
+            # --- 伺服器外觀與連線 ---
+            SERVER_NAME: Xiao
+            MOTD: 'Charles James "Charlie" Kirk'
+            ICON: https://raw.githubusercontent.com/Rayfor000/test/main/server-icon.png
+            OVERRIDE_ICON: true
+            MAX_PLAYERS: 67
+            ONLINE_MODE: false
+            PAUSE_WHEN_EMPTY_SECONDS: -1
+            PLAYER_IDLE_TIMEOUT: 0
+            RESOURCE_PACK_ENFORCE: true
+
+            # --- 遊戲機制設定 ---
+            ALLOW_FLIGHT: true
+            DIFFICULTY: hard
+            MAX_CHAINED_NEIGHBOR_UPDATES: 10000
+            SIMULATION_DISTANCE: 8
+            VIEW_DISTANCE: 8
+
+            # --- 系統、權限與日誌 ---
+            ENABLE_ROLLING_LOGS: true
+            ENFORCE_SECURE_PROFILE: false
+            LOG_IPS: false
+
+            # --- 外部資源下載 ---
+            REMOVE_OLD_PLUGINS: true
+            PLUGINS: |-
+
+                # https://cdn.modrinth.com/data/4p4oFMdK/versions/b2hQ8OC9/FakeSeed-1.0.0.jar
+                # https://cdn.modrinth.com/data/A5foNgax/versions/cR7Xl8zz/LoginTo.jar
+                # https://cdn.modrinth.com/data/Nb5OK0pM/versions/RrAxxGo1/LibreLoginNext.jar
+                # https://cdn.modrinth.com/data/O4o4mKaq/versions/dGfCZHqk/GriefPrevention.jar
+                # https://cdn.modrinth.com/data/bCjNZu0C/versions/FHSgISwb/RaycastedEntityOcclusion-1.6.5.jar
+                # https://cdn.modrinth.com/data/yeJMtJfW/versions/usnJWpSz/grimac-bukkit-2.3.73-0a6ac7a.jar
+                # https://hangarcdn.papermc.io/plugins/SyntaxDevTeam/PunisherX/versions/1.6.2/PAPER/PunisherX-1.6.2.jar
+
+                # https://cdn.modrinth.com/data/1apsbntF/versions/7YxoA22A/SetHome-6.0.jar
+                # https://cdn.modrinth.com/data/MubyTbnA/versions/NsY1L3hZ/FreedomChat-Paper-1.7.7.jar
+                # https://cdn.modrinth.com/data/OhduvhIc/versions/WXSTM4Su/veinminer-paper-2.5.3.jar
+                # https://cdn.modrinth.com/data/ZRgKHQlC/versions/JdhjeASw/Tpa-2.0.jar
+                # https://cdn.modrinth.com/data/cldUhAma/versions/FNHIgUTt/RecipeUnlocker-1.0.jar
+                # https://cdn.modrinth.com/data/tRdRT5jS/versions/QWcurzKi/ClickMobs-spigot-1.2.7.jar
+                # https://cdn.modrinth.com/data/wnA697Zm/versions/iiQIQCzb/isolatedcreative-1.0.3.jar
+                # https://cdn.modrinth.com/data/xUGmkz5r/versions/oZSu7rVa/CoreMechanics-1.0.7.jar
+                # https://cdn.modrinth.com/data/zAeNxnZJ/versions/IBeQAPew/Pipes-0.1.1.jar
+                # https://cdn.modrinth.com/data/7WMro546/versions/LrkIwWMD/VanillaTNT-1.0.3.jar
+                https://cdn.modrinth.com/data/7j6Y3FaT/versions/BlbpHoAh/SimpleCometElevator-1.1.0-1.21.x.jar
+                https://cdn.modrinth.com/data/7pdfxYHV/versions/ZblOxPfl/instantrestock_2.6.2.jar
+                https://cdn.modrinth.com/data/BITzwT7B/versions/TA8iVq8Y/ClickVillagers-paper-1.6.2.jar
+                https://cdn.modrinth.com/data/EPmUAUrT/versions/robHmMmA/lightningKill-2.0.jar
+                https://cdn.modrinth.com/data/HFTnFHKn/versions/1z4BwX3X/AntiPopup-13.1.jar
+                https://cdn.modrinth.com/data/N28y3p9Q/versions/HCOPBh9W/GreenChunk-1.4x.jar
+                https://cdn.modrinth.com/data/Z5HLT8ij/versions/kNFXIRVp/AnvilCost-0.0.5.jar
+                https://cdn.modrinth.com/data/ufKISd6S/versions/viouJQap/MTF-0.99.jar
+                https://hangarcdn.papermc.io/plugins/William278/HuskHomes/versions/4.10/PAPER/HuskHomes-Paper-4.10.jar
+
+                # https://cdn.modrinth.com/data/KAaZvh09/versions/fX08eVoJ/ClearLaggEnhanced-2026.3.1.jar
+                # https://cdn.modrinth.com/data/fD1X4Kwd/versions/u0I1B7HL/LagFixer.jar
+                # https://cdn.modrinth.com/data/ko3c7w1p/versions/491s6ZOU/PerfoBooster-2.9.jar
+                # https://cdn.modrinth.com/data/pDaq3k6b/versions/hIf4dfhB/VillagerLobotimizer-1.14.2.jar
+                https://cdn.modrinth.com/data/7bhTp28M/versions/2LmTmEgF/ClearLag%201.7.7.1%20VER%201.18-1.21.jar
+                https://cdn.modrinth.com/data/NUsm3vyS/versions/Z9ToY6fX/EntityDetection.jar
+                https://cdn.modrinth.com/data/V27CDDh1/versions/JT79aP96/Insights-6.21.2.jar
+                https://hangarcdn.papermc.io/plugins/pop4959/Chunky/versions/1.4.40/PAPER/Chunky-Bukkit-1.4.40.jar
+
+                # https://cdn.modrinth.com/data/oioBwOz4/versions/1pUVdWF5/fake-player-plugin-1.6.6.11.jar
+                https://cdn.modrinth.com/data/7cMAqMND/versions/o9QxIoV1/Backuper-4.0.6.jar
+                https://cdn.modrinth.com/data/XWKWAzd8/versions/940BfkSq/InventoryRollbackPlus-1.8.3.jar
+                https://cdn.modrinth.com/data/z4HZZnLr/versions/mHtmqIig/FastAsyncWorldEdit-Paper-2.15.0.jar
+                https://github.com/Jikoo/OpenInv/releases/download/5.3.1/OpenInv.jar
+
+            REMOVE_OLD_DATAPACKS: true
+            DATAPACKS: |-
+
+                https://cdn.modrinth.com/data/3GfxWFCy/versions/A8YDctyr/DnT%20Woodland%20Mansion%20Overhaul%20v2.zip
+                https://cdn.modrinth.com/data/7JTDDmRT/versions/tOWwOzy4/DnT%20Desert%20Temple%20Overhaul%20v2.1.zip
+                https://cdn.modrinth.com/data/8Dbnvm77/versions/3u94EXVg/DnT%20Nether%20Fortress%20Overhaul%20v3.1.zip
+                https://cdn.modrinth.com/data/DNuNq5bb/versions/z8x5GJoh/DnT%20Ancient%20City%20Overhaul%20v3.2.3.zip
+                https://cdn.modrinth.com/data/nWSeFpQt/versions/t2gIpNuq/DnT%20Swamp%20Hut%20Overhaul%20v2.3.zip
+                https://cdn.modrinth.com/data/oHjYCS0f/versions/ljTHNYiU/DnT%20Jungle%20Temple%20Overhaul%20v2.1.zip
+                https://cdn.modrinth.com/data/z6GJ3ycD/versions/XaMRlEub/DnT%20Ocean%20Monument%20Overhaul%20v2.2.zip
+
+                # https://gm4.co/modules/download/1.21.5/bat-grenades
+                # https://gm4.co/modules/download/1.21.5/better-fire
+                # https://gm4.co/modules/download/1.21.5/block-compressors
+                # https://gm4.co/modules/download/1.21.5/book-binders
+                # https://gm4.co/modules/download/1.21.5/calling-bell
+                # https://gm4.co/modules/download/1.21.5/cement-mixers
+                # https://gm4.co/modules/download/1.21.5/chairs
+                # https://gm4.co/modules/download/1.21.5/cozy-campfires
+                # https://gm4.co/modules/download/1.21.5/crossbow-cartridges
+                # https://gm4.co/modules/download/1.21.5/display-frames
+                # https://gm4.co/modules/download/1.21.5/dripleaf-filters
+                # https://gm4.co/modules/download/1.21.5/dripleaf-launchers
+                # https://gm4.co/modules/download/1.21.5/enchantment-extractors
+                # https://gm4.co/modules/download/1.21.5/forming-press
+                # https://gm4.co/modules/download/1.21.5/holographic-tags
+                # https://gm4.co/modules/download/1.21.5/ink-spitting-squid
+                # https://gm4.co/modules/download/1.21.5/liquid-minecarts
+                # https://gm4.co/modules/download/1.21.5/liquid-tanks
+                # https://gm4.co/modules/download/1.21.5/live-catch
+                # https://gm4.co/modules/download/1.21.5/mending-tanks
+                # https://gm4.co/modules/download/1.21.5/midnight-menaces
+                # https://gm4.co/modules/download/1.21.5/mob-curing
+                # https://gm4.co/modules/download/1.21.5/monsters-unbound
+                # https://gm4.co/modules/download/1.21.5/mysterious-midnights
+                # https://gm4.co/modules/download/1.21.5/note-block-interface
+                # https://gm4.co/modules/download/1.21.5/phantom-scarecrows
+                # https://gm4.co/modules/download/1.21.5/podzol-rooting-soil
+                # https://gm4.co/modules/download/1.21.5/potion-liquids
+                # https://gm4.co/modules/download/1.21.5/relocators
+                # https://gm4.co/modules/download/1.21.5/rope-ladders
+                # https://gm4.co/modules/download/1.21.5/shapeless-portals
+                # https://gm4.co/modules/download/1.21.5/shroomites
+                # https://gm4.co/modules/download/1.21.5/smelteries
+                # https://gm4.co/modules/download/1.21.5/soul-glass
+                # https://gm4.co/modules/download/1.21.5/spawner-minecarts
+                # https://gm4.co/modules/download/1.21.5/survival-refightalized
+                # https://gm4.co/modules/download/1.21.5/teleportation-anchors
+                # https://gm4.co/modules/download/1.21.5/towering-trees
+                # https://gm4.co/modules/download/1.21.5/tunnel-bores
+                # https://gm4.co/modules/download/1.21.5/washing-tanks
+                https://gm4.co/modules/download/1.21.5/balloon-animals
+                https://gm4.co/modules/download/1.21.5/desire-lines
+                https://gm4.co/modules/download/1.21.5/disassemblers
+                https://gm4.co/modules/download/1.21.5/double-doors
+                https://gm4.co/modules/download/1.21.5/ender-hoppers
+                https://gm4.co/modules/download/1.21.5/enderman-support-class
+                https://gm4.co/modules/download/1.21.5/everstone
+                https://gm4.co/modules/download/1.21.5/lively-lily-pads
+                https://gm4.co/modules/download/1.21.5/speed-paths
+                https://gm4.co/modules/download/1.21.5/vertical-rails
+                https://gm4.co/modules/download/1.21.5/xp-storage
+                https://gm4.co/modules/download/1.21.5/ziprails
+
+                # https://cdn.modrinth.com/data/L61L3hhV/versions/sLwuDB6z/BetterVanillaMobs_FREE_1.21.11_opti2.zip
+                # https://cdn.modrinth.com/data/MCnBYP0b/versions/6Ja5EUoL/tru.e-ending-1.1.4d.zip
+                # https://cdn.modrinth.com/data/OBTB2hmO/versions/IyBnihsa/BrutalNightmare-v5.7_DATAPACK.zip
+                # https://cdn.modrinth.com/data/TWv3uKXX/versions/UJspJmcZ/Special%20Mobs.zip
+                # https://cdn.modrinth.com/data/qqIrLnDt/versions/dlJvBHGl/%5B1.21.11%2B%5Dwitherswrath-1.15.2.zip
+                https://cdn.modrinth.com/data/PG1zrN9b/versions/rfPK8JwV/Wither%20Remastered%20v1.2.zip
+                https://cdn.modrinth.com/data/iaFWBDP2/versions/MRfOWuML/upgraded-mobs-1.5.1.zip
+                https://cdn.modrinth.com/data/yo1bGdBx/versions/DnFN713x/dragonkind-evolved-by-kanokarob-v1.12.zip
+
+                # https://cdn.modrinth.com/data/2GqOYTAx/versions/F8APJDMI/improved-weather-v2.6-dp.zip
+                # https://cdn.modrinth.com/data/2k6aLirX/versions/xwGkew6i/portfolio-1.21.9%2B1.5.5-datapack.zip
+                # https://cdn.modrinth.com/data/3tf5v4zO/versions/y7sQmJaq/mini-blocks-items-v1-0-0-mc-1-21-11.zip
+                # https://cdn.modrinth.com/data/EdR8bCZO/versions/LhojwKJR/Haul-v1.3.3.zip
+                # https://cdn.modrinth.com/data/OCf6QSF2/versions/R1fK9uTg/Health-2.2.0.zip
+                # https://cdn.modrinth.com/data/SoL6FwNo/versions/e8UhslEx/Librarian%27s%20Balance%20-%20v3.8b.zip
+                # https://cdn.modrinth.com/data/UNlTQZ8V/versions/nwMBmqv7/sculk-expansion-1.3.7.zip
+                # https://cdn.modrinth.com/data/XIGtm28Z/versions/6icv93kn/no-collision-1.21.11-0.1.zip
+                # https://cdn.modrinth.com/data/XrxtjryC/versions/oMCQvFJ5/%27Nether%20Weather%27%20%28v1.1.6%29%20by%20iNkoR_the_2nd%20%281.21.11%29.zip
+                # https://cdn.modrinth.com/data/YJgkgKMm/versions/93bxF9lv/xaeros-map-server-utils.zip
+                # https://cdn.modrinth.com/data/cNHrBKWb/versions/7JdtWcbM/Farm3x3-release-2.3.1.zip
+                # https://cdn.modrinth.com/data/j6YEKDZd/versions/QjGr2L89/vr_typewriter_daycounter_v1.1.zip
+                # https://cdn.modrinth.com/data/jzn0KNd6/versions/1l1yFZpx/Stonecutter%20Damage-mcmeta-88-94_1.21.9-1.21.11.zip
+                # https://cdn.modrinth.com/data/sqhvLNrE/versions/W16H07va/mini-blocks-v1-6-1-mc-1-21-11.zip
+                # https://cdn.modrinth.com/data/zJIYJfn8/versions/Ws3KPmI2/catenary_v0.6.1_data_pack.zip
+                https://cdn.modrinth.com/data/8hulzM0y/versions/3CXJboda/nice_actions_v2-3.zip
+                https://cdn.modrinth.com/data/BLG002oq/versions/GALa3ftH/BetterCraftables_v6.3.1_mc1.21.9-26.1snap1.zip
+                https://cdn.modrinth.com/data/DSRDAC84/versions/SWRSTdRw/Copper%20Contraptions%201.1.8.zip
+                https://cdn.modrinth.com/data/DuUMFIfX/versions/JcCeDPbd/MasterCutter%2Bv1.6-mc1.21.11.zip
+                https://cdn.modrinth.com/data/JSMwcdt3/versions/Jw4KFCGn/Flower%20Tweaks.zip
+                https://cdn.modrinth.com/data/SHl99PmV/versions/NIu3cMWJ/Copper%20Wiring%20Pre%20Release.zip
+                https://cdn.modrinth.com/data/VoVJ47kN/versions/FmCgPxOd/BlazeandCave%27s%20Advancements%20Pack%201.20.2.zip
+                https://cdn.modrinth.com/data/kJjhh2ZO/versions/9hooFRX0/BetterFurnace-1.3.0.zip
+                https://cdn.modrinth.com/data/o9GTjkt6/versions/K3Ct56Gx/pk_items_filter_V.3.2.5_mc_1.21.9.zip
+                https://cdn.modrinth.com/data/te06RRO7/versions/mOdPqCny/Light%20Machine%20%281.21.5%29%20%5B1.0.1%5D.zip
+                https://drive.google.com/uc?export=download&id=1yxXsO1E7vrqDP1URje2ewFVn3zNmXRTz
+                https://raw.githubusercontent.com/Rayfor000/test/main/mine-treasure-1.6.4.zip
+
+                # https://cdn.modrinth.com/data/4pbhwMQz/versions/mp4tkxLL/William%20Wythers%27%20Overhauled%20Overworld%20v2.6.4.zip
+                # https://cdn.modrinth.com/data/9EFaPoo8/versions/FdLcvcHP/amethyst-nether-v3.5.2.zip
+                # https://cdn.modrinth.com/data/E8kMzoSt/versions/Bk0u0nG0/Alien%20End%201.5.4.zip
+                # https://cdn.modrinth.com/data/H1POBnTh/versions/Q4JQ6nfD/ddd-v.1.0.6-MC-1.21.11.zip
+                # https://cdn.modrinth.com/data/NsYxnUJm/versions/A9ZY2Fxf/StellarityLite-3.0.5.9.zip
+                # https://cdn.modrinth.com/data/bZgeDzN8/versions/rqHuvueH/Stellarity-5.3.0.zip
+                # https://cdn.modrinth.com/data/j3FONRYr/versions/RaKH6dLr/Structory_Towers_1.21_v1.0.15.zip
+                # https://cdn.modrinth.com/data/tdv7lfX5/versions/bD7CdMW7/Nightosphere%203.2.zip
+                https://cdn.modrinth.com/data/3L2L6sWL/versions/kXofCPYb/terratonic-3.0.18.zip
+                https://cdn.modrinth.com/data/8oi3bsk5/versions/xDS6ehq8/Terralith_1.21.11_v2.6.0.zip
+                https://cdn.modrinth.com/data/ZVzW5oNS/versions/l721IuKU/Incendium_26.1_v5.4.12_UNSUPPORTED.zip
+                https://cdn.modrinth.com/data/annHP7q0/versions/zikRIvHl/Sunken_Spires_1.21.zip
+                https://cdn.modrinth.com/data/hl5OLM95/versions/POZ6ECW4/Geophilic%203.4.6.dp.zip
+                https://cdn.modrinth.com/data/oTQsXi8U/versions/QbaRDOcI/Terralith_ReStoned_v1.3.1.zip
+                https://cdn.modrinth.com/data/qtOzkQyw/versions/qeZVPy3R/Vilages%20revamped%201.21.11.zip
+                https://cdn.modrinth.com/data/wr1BCv8H/versions/c0qwulEB/Endercon%203.0.zip
+                https://mediafilez.forgecdn.net/files/7806/159/NotEnoughTrials-1.21.11-v5.1.zip
+
+            RESOURCE_PACK: ''
+            RESOURCE_PACK_SHA1: ''
+
+            VANILLATWEAKS_SHARECODE: 'V55bUE'
+
+            # --- 自動化指令 ---
+            RCON_CMDS_STARTUP: |-
+
+                execute in minecraft:overworld run gamerule elytra_movement_check false
+                execute in minecraft:overworld run gamerule forgive_dead_players false
+                execute in minecraft:overworld run gamerule global_sound_events false
+                execute in minecraft:overworld run gamerule keep_inventory false
+                execute in minecraft:overworld run gamerule lava_source_conversion true
+                execute in minecraft:overworld run gamerule locator_bar false
+                execute in minecraft:overworld run gamerule max_snow_accumulation_height 8
+                execute in minecraft:overworld run gamerule natural_health_regeneration true
+                execute in minecraft:overworld run gamerule player_movement_check false
+                execute in minecraft:overworld run gamerule players_sleeping_percentage 0
+                execute in minecraft:overworld run gamerule show_advancement_messages false
+                execute in minecraft:overworld run gamerule spawn_phantoms false
+                execute in minecraft:overworld run gamerule universal_anger true
+                execute in minecraft:overworld run worldborder set 50000
+                execute in minecraft:the_end run gamerule elytra_movement_check false
+                execute in minecraft:the_end run gamerule forgive_dead_players false
+                execute in minecraft:the_end run gamerule global_sound_events false
+                execute in minecraft:the_end run gamerule keep_inventory false
+                execute in minecraft:the_end run gamerule lava_source_conversion true
+                execute in minecraft:the_end run gamerule locator_bar false
+                execute in minecraft:the_end run gamerule max_snow_accumulation_height 8
+                execute in minecraft:the_end run gamerule natural_health_regeneration true
+                execute in minecraft:the_end run gamerule player_movement_check false
+                execute in minecraft:the_end run gamerule players_sleeping_percentage 0
+                execute in minecraft:the_end run gamerule show_advancement_messages false
+                execute in minecraft:the_end run gamerule spawn_phantoms false
+                execute in minecraft:the_end run gamerule universal_anger true
+                execute in minecraft:the_end run worldborder set 50000
+                execute in minecraft:the_nether run gamerule elytra_movement_check false
+                execute in minecraft:the_nether run gamerule forgive_dead_players false
+                execute in minecraft:the_nether run gamerule global_sound_events false
+                execute in minecraft:the_nether run gamerule keep_inventory false
+                execute in minecraft:the_nether run gamerule lava_source_conversion true
+                execute in minecraft:the_nether run gamerule locator_bar false
+                execute in minecraft:the_nether run gamerule max_snow_accumulation_height 8
+                execute in minecraft:the_nether run gamerule natural_health_regeneration true
+                execute in minecraft:the_nether run gamerule player_movement_check false
+                execute in minecraft:the_nether run gamerule players_sleeping_percentage 0
+                execute in minecraft:the_nether run gamerule show_advancement_messages false
+                execute in minecraft:the_nether run gamerule spawn_phantoms false
+                execute in minecraft:the_nether run gamerule universal_anger true
+                execute in minecraft:the_nether run worldborder set 10000
+
+            RCON_CMDS_ON_CONNECT: |-
+
+                tellraw @a [{"text":"\u00bb ","color":"gray"},{"text":"Welcome to ","color":"aqua"},{"text":"Xiao","color":"yellow","bold":true},{"text":" \u00ab","color":"gray"}]
+                playsound minecraft:entity.experience_orb.pickup master @a ~ ~ ~ 1 1
+
+    mcs_mod:
+        container_name: neoforge
+        image: itzg/minecraft-server:java21-graalvm
+        tty: true
+        stdin_open: true
+        ports: ['25595:25565', '25570:25570']
+        volumes: ['./data/mc-neoforge:/data']
+
+        environment:
+            UID: 1001
+            GID: 1001
+
+            # --- 基礎核心設定 ---
+            EULA: true
+            TYPE: NEOFORGE
+            VERSION: 1.21.1
+            MEMORY: 3072M
+            JVM_OPTS: --add-modules=jdk.incubator.vector
+            JVM_DD_OPTS: acceleratedrecoiling.backend=FFM
+            USE_AIKAR_FLAGS: false
+            USE_MEOWICE_FLAGS: true
+
+            # --- 伺服器外觀與連線 ---
+            SERVER_NAME: Xiao
+            MOTD: 'Create Mod!_!'
+            ICON: ''
+            OVERRIDE_ICON: true
+            MAX_PLAYERS: 3
+            ONLINE_MODE: false
+            PAUSE_WHEN_EMPTY_SECONDS: 60
+            PLAYER_IDLE_TIMEOUT: 0
+            RESOURCE_PACK_ENFORCE: true
+
+            # --- 遊戲機制設定 ---
+            ALLOW_FLIGHT: true
+            DIFFICULTY: hard
+            MAX_CHAINED_NEIGHBOR_UPDATES: 10000
+            SIMULATION_DISTANCE: 8
+            VIEW_DISTANCE: 8
+
+            # --- 系統、權限與日誌 ---
+            ENABLE_ROLLING_LOGS: true
+            ENFORCE_SECURE_PROFILE: false
+            LOG_IPS: false
+
+            # --- 外部資源下載 ---
+            DATAPACKS: |-
+
+                https://cdn.modrinth.com/data/tcb6Gs0z/versions/hOTWiOH4/Create%20Compat%20-%20BetterEnd%20%26%20BetterNether%20v1.1.zip
+
+            MODS: |-
+
+                # --- Lib ---
+                https://cdn.modrinth.com/data/MVARlG2f/versions/9GjNW2Gf/Zeta-1.1-40.jar
+                https://cdn.modrinth.com/data/Ua7DFN59/versions/ZB22DE9q/YungsApi-1.21.1-NeoForge-5.1.6.jar
+                https://cdn.modrinth.com/data/V6fKbpBN/versions/X16u6myK/integrated_api-1.7.3%2B1.21.1-neoforge.jar
+                https://cdn.modrinth.com/data/twkfQtEc/versions/d5bksJeJ/moonlight-neoforge-1.21.1-3.0.5.jar
+                https://cdn.modrinth.com/data/QAGBst4M/versions/EgWWSAhJ/PuzzlesLib-v21.1.39-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/s6dgwBzy/versions/FRTVjpTz/Daisy-neoforge-1.0.2-test.jar
+                https://cdn.modrinth.com/data/MBAkmtvl/versions/XC1JUHmA/balm-neoforge-1.21.1-21.0.57.jar
+                https://cdn.modrinth.com/data/40FYwb4z/versions/KsfI4QsR/caelus-neoforge-7.0.1%2B1.21.1.jar
+                https://cdn.modrinth.com/data/vvuO3ImH/versions/yohfFbgD/curios-neoforge-9.5.1%2B1.21.1.jar
+
+                # ---
+                # https://cdn.modrinth.com/data/7JTDDmRT/versions/jwKNecIA/dungeons-and-taverns-desert-temple-replacement-v1.2.jar
+                # https://cdn.modrinth.com/data/8Dbnvm77/versions/gFOIlzcw/dungeons-and-taverns-nether-fortress-overhaul-v2.4.jar
+                # https://cdn.modrinth.com/data/8Lw09aLb/versions/RBwKCOh4/lukis-grand-capitals-1.1.3.jar
+                # https://cdn.modrinth.com/data/QIt10I7z/versions/4XIbhTdE/dungeons-and-taverns-pillager-outpost-overhaul-v2.2.jar
+                # https://cdn.modrinth.com/data/WQxwMPH5/versions/UqNxyorq/ImprovedPillagerOutpost-v5.jar
+                # https://cdn.modrinth.com/data/fgmhI8kH/versions/ztzRUnQ7/%5BNeoforge%5Dctov-3.6.3.jar
+                # https://cdn.modrinth.com/data/rYocd2LE/versions/6PYBSejs/dungeons-and-taverns-stronghold-overhaul-v2.1.f.jar
+                https://cdn.modrinth.com/data/3GfxWFCy/versions/LEkxbqdY/dungeons-and-taverns-woodland-mansion-replacement-v1.2.jar
+                https://cdn.modrinth.com/data/DNuNq5bb/versions/sI52k2jg/dungeons-and-taverns-ancient-city-overhaul-v2.jar
+                https://cdn.modrinth.com/data/nWSeFpQt/versions/XJq4ei5a/dungeons-and-taverns-swamp-hut-overhaul-v2.jar
+                https://cdn.modrinth.com/data/oHjYCS0f/versions/8Xxj6Gaj/dungeons-and-taverns-jungle-temple-replacement-v1.2.jar
+                https://cdn.modrinth.com/data/tpehi7ww/versions/BYUUUeZA/dungeons-and-taverns-v4.4.4.jar
+                https://cdn.modrinth.com/data/z6GJ3ycD/versions/SFXYDC6X/dungeons-and-taverns-ocean-monument-replacement-v1.2.jar
+
+                https://cdn.modrinth.com/data/yo1bGdBx/versions/xWCZpKMt/dragonkind-evolved-1.5.3.jar
+
+                # (lib) https://cdn.modrinth.com/data/V6fKbpBN/versions/X16u6myK/integrated_api-1.7.3%2B1.21.1-neoforge.jar
+                https://cdn.modrinth.com/data/KUJdfPQz/versions/GkHH2Wqj/integrated_stronghold-1.1.4%2B1.21.1-neoforge.jar
+                https://cdn.modrinth.com/data/Z8OZShAU/versions/6Vwdcz9e/idas-1.13.4%2B1.21.1-neoforge.jar
+                https://cdn.modrinth.com/data/o1qh5qIF/versions/5ZPUuujr/integrated_villages-1.3.2%2B1.21.1-neoforge.jar
+
+                # (lib) https://cdn.modrinth.com/data/7bdKEtKC/versions/sH6onskf/bclib-21.0.20.jar
+                # (lib) https://cdn.modrinth.com/data/HZmhgdJk/versions/5db3GZzg/wunderlib-21.0.10.jar
+                # (lib) https://cdn.modrinth.com/data/R8uGDQpB/versions/NWpb0jwM/worldweaver-21.0.20.jar
+                # https://cdn.modrinth.com/data/IcERKldh/versions/QWW9Gwwf/BetterEnd-21.0.24.jar
+                # https://cdn.modrinth.com/data/fxX3RlL5/versions/zjCPvMgN/BetterNether-21.0.19.jar
+
+                # (lib) https://cdn.modrinth.com/data/Ua7DFN59/versions/ZB22DE9q/YungsApi-1.21.1-NeoForge-5.1.6.jar
+                # https://cdn.modrinth.com/data/3dT9sgt4/versions/yFjEcj2g/YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2.jar
+                # https://cdn.modrinth.com/data/z9Ve58Ih/versions/P00i2hJn/YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2.jar
+                https://cdn.modrinth.com/data/HjmxVlSr/versions/Go3nbneL/YungsBetterMineshafts-1.21.1-NeoForge-5.1.1.jar
+                https://cdn.modrinth.com/data/Z2mXHnxP/versions/iopJiJQp/YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5.jar
+
+                # (lib) https://cdn.modrinth.com/data/twkfQtEc/versions/d5bksJeJ/moonlight-neoforge-1.21.1-3.0.5.jar
+                https://cdn.modrinth.com/data/fFEIiSDQ/versions/3N4gijtd/supplementaries-neoforge-1.21.1-3.6.4.jar
+
+                # (lib) https://cdn.modrinth.com/data/MVARlG2f/versions/9GjNW2Gf/Zeta-1.1-40.jar
+                https://cdn.modrinth.com/data/qnQsVE2z/versions/6HWAd3tc/Quark-4.1-478.jar
+
+                # --- Create ---
+                https://cdn.modrinth.com/data/LNytGWDc/versions/UjX6dr61/create-1.21.1-6.0.10.jar
+                https://cdn.modrinth.com/data/Vg5TIO6d/versions/EHyCRpCV/create_connected-1.1.16-mc1.21.1.jar
+
+                # https://cdn.modrinth.com/data/4cnrKlAs/versions/TT5I7reD/Simply_Create_Model%EF%BD%9C%E7%AE%80%E5%8D%95%E5%8A%A8%E5%8A%9B-mod-1.21.1-1.0.1.jar
+                # https://cdn.modrinth.com/data/kSok4DxT/versions/HXviiJ3I/smart_bounds-1.0.0.jar
+                # https://cdn.modrinth.com/data/lMYIHZNH/versions/QWqEdWHy/createbetterfps-1.21.1-1.1.4.jar
+                https://cdn.modrinth.com/data/RYJzdkDr/versions/ry1hvo4l/createthreadedtrains-neoforge-1.21.1-1.0.0.jar
+                https://cdn.modrinth.com/data/ULzrAD1U/versions/koRyfXrO/createschematicchecker-1.21.20-6.0-neoforge-1.21.1.jar
+                https://cdn.modrinth.com/data/Z0d7hFh4/versions/Dx5cIwDo/CreateLazyTick-2.4.9-6.0.x-neoforge-1.21.1.jar
+
+                https://cdn.modrinth.com/data/fUa6OtBG/versions/nHewtH9K/create_ltab-3.9.1.jar
+
+                # --- Auto Mod Pack ---
+                # https://cdn.modrinth.com/data/k68glP2e/versions/ET2mE920/automodpack-mc1.21.1-neoforge-4.0.5.jar
+                https://cdn.modrinth.com/data/hlVtb1H0/versions/YsuxMxVa/mods_optimizer-neoforge-1.21.1-4.3.0.jar
+
+                # --- QOL 1 ---
+                https://cdn.modrinth.com/data/2OCozLqc/versions/I68NwlOb/custom_nether_portals-neoforge-1.21.1-1.0.0.jar
+                https://cdn.modrinth.com/data/Bh6ZOMvp/versions/odppGdXf/smarterfarmers-1.21-2.2.4-neoforge.jar
+                https://cdn.modrinth.com/data/Dx2SPPEi/versions/AwIGLmVX/civillis-neoforge-1.3.3-release%2Bmc1.21.1.jar
+                https://cdn.modrinth.com/data/EltpO5cN/versions/C2tLycH2/lootr-neoforge-1.21.1-1.11.37.120.jar
+                https://cdn.modrinth.com/data/EsAfCjCV/versions/uAKA6Laj/appleskin-neoforge-mc1.21-3.0.9.jar
+                https://cdn.modrinth.com/data/H1sntfo8/versions/TP9ZaQc3/guardvillagers-2.4.7-1.21.1.jar
+                https://cdn.modrinth.com/data/K9Uiw3me/versions/NF9QxgBj/betterskies-1.0.2-neoforge-1.21.1.jar
+                https://cdn.modrinth.com/data/fPetb5Kh/versions/nFniEtJV/NaturesCompass-1.21.1-3.4.0-neoforge.jar
+                https://cdn.modrinth.com/data/fRiHVvU7/versions/ouSj7NfF/emi-1.1.22%2B1.21.1%2Bneoforge.jar
+                https://cdn.modrinth.com/data/gfDTzhpd/versions/K7yzqBqW/timestacker-neoforge-1.2.0-1.21.jar
+                https://cdn.modrinth.com/data/nvQzSEkH/versions/yd8FKCmx/Jade-1.21.1-NeoForge-15.10.5.jar
+                https://cdn.modrinth.com/data/qQyHxfxd/versions/ZV8eL55E/NoChatReports-NEOFORGE-1.21.1-v2.9.1.jar
+                https://cdn.modrinth.com/data/qyVF9oeo/versions/Dd2tmpsk/sound-physics-remastered-neoforge-1.21.1-1.5.1.jar
+                https://cdn.modrinth.com/data/sE5eVkj4/versions/2UPRr3qV/luminousblocks-1.3.0-neoforge-1.21.1.jar
+                https://cdn.modrinth.com/data/tagwiZkJ/versions/VEburL70/polymorph-neoforge-1.1.0%2B1.21.1.jar
+                https://cdn.modrinth.com/data/u6dRKJwZ/versions/YAcQ6elZ/jei-1.21.1-neoforge-19.27.0.340.jar
+
+                # (lib) https://cdn.modrinth.com/data/40FYwb4z/versions/KsfI4QsR/caelus-neoforge-7.0.1%2B1.21.1.jar
+                # (lib) https://cdn.modrinth.com/data/vvuO3ImH/versions/yohfFbgD/curios-neoforge-9.5.1%2B1.21.1.jar
+                https://cdn.modrinth.com/data/mSQF1NpT/versions/RX6A02W1/elytraslot-neoforge-9.0.2%2B1.21.1.jar
+
+                # --- QOL 2 ---
+                # (lib) https://cdn.modrinth.com/data/QAGBst4M/versions/EgWWSAhJ/PuzzlesLib-v21.1.39-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/1VSGxqkt/versions/Cb7KF5iF/BlockRunner-v21.1.2-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/2fltysAl/versions/C7j9WWVp/StrawStatues-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/4v5Na7b9/versions/JwYLe1Y0/SwordBlockingMechanics-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/66H5fc9R/versions/HcqOZDaC/DyedFlames-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/66VIiT1y/versions/5g9aZDW0/UniversalBoneMeal-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/6pY6oEMg/versions/mgj2i08c/MetalBundles-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/8pcjMDgj/versions/iAzPpBdI/TradingPost-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/9hx3AbJM/versions/MxbfrOEv/EasyMagic-v21.1.4-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/A2xcMSUn/versions/QO99Qp79/TinySkeletons-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/AVq17PqV/versions/TOHEOE2X/LeavesBeGone-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/BEVhblTh/versions/FpdaIV35/ConvenientEffects-v21.1.4-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/CUQhzQjg/versions/OR1IjCku/EnderZoology-v21.1.4-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/DzZWws4q/versions/qHngFoBS/ClimateRivers-v21.1.3-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/EOig9U0j/versions/GOAgiH0l/BarteringStation-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/FQgc8dib/versions/2k3GCxEt/DiagonalWalls-v21.1.2-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/FsoeTIV0/versions/gAkkWcSn/FastItemFrames-v21.1.6-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/FzyTKtVF/versions/9XTU6J5n/Stoneworks-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/IKARgflD/versions/bgR1e0O5/DiagonalFences-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/Iv3kcKZn/versions/O72HWWUK/CombatNouveau-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/KNUSlHiU/versions/UVSMPjiS/BetterTridents-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/Mr2x2AUf/versions/GIiRpEEp/LinkedChests-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/NvlReHlC/versions/NRXn1TLg/ArcaneLanterns-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/OZBR5JT5/versions/fSQSKhdF/EasyAnvils-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/RCK4uOMN/versions/oNpW2PtS/HopperGadgetry-v21.1.2-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/U5I04KQ6/versions/mKjI1D7Q/GoldenAgeCombat-v21.1.2-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/VmcdxJxh/versions/pFAxqKSr/PlentyPlates-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/WnwcSeWc/versions/a7lvPWaQ/RespawningAnimals-v21.1.2-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/YiQCYsjo/versions/27FVftjr/PartyCreepers-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/YxCEfYbF/versions/DZi1Jm4Y/ArmorQuickSwap-v21.1.2-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/ZX66K16c/versions/5NZounJc/PickUpNotifier-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/bHJp2GRg/versions/fII2Ezk6/NetherChested-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/derP0ten/versions/dauEcrnZ/MutantMonsters-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/ePv85y52/versions/AoOYPAOZ/EnchantingInfuser-v21.1.4-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/ftOBbnu8/versions/Qsj3YEUS/MobLassos-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/gA5euN8S/versions/OBp8ltOS/EasyShulkerBoxes-v21.1.3-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/iGEcTqwK/versions/OYv2KbjN/FantasticWings-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/jSV9w0J5/versions/9bEpNrvK/IllagerInvasion-v21.1.6-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/jn24bUJo/versions/WXSwXmEX/SkeletonAIFix-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/k0wqURes/versions/G3XYA6Dk/EnchantmentSwitch-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/kfqD1JRw/versions/Jy5V5FNj/VisualWorkbench-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/m3pkVbY8/versions/S5sNyRsY/EchoChest-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/oOi0CKes/versions/IwUmOLxe/DiagonalWindows-v21.1.1-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/p6prwv2Q/versions/9EBHr4tP/PermanentSponges-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/qbqWvc0D/versions/4IIOAgTS/BagOfHolding-v21.1.2-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/s6R4jmL8/versions/wfHip7bI/EternalNether-v21.1.3-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/uHWrqYcS/versions/nLff2PaZ/HangGlider-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/wEGlhxv2/versions/ISBgw6iw/MiniumStone-v21.1.0-1.21.1-NeoForge.jar
+                https://cdn.modrinth.com/data/wTFALvR2/versions/GRcaWOfO/Ytones-v21.1.1-1.21.1-NeoForge.jar
+
+                # --- Fix ---
+                https://cdn.modrinth.com/data/3WP3HZRG/versions/9UyLCZ1u/simple_snowy_fix-1.21.1-1.21.11-2.1.9-neoforge.jar
+                https://cdn.modrinth.com/data/67kVxsaO/versions/poGMd0AE/lmft-1.1.1%2B1.21.9-neoforge.jar
+                https://cdn.modrinth.com/data/6E5wF2bY/versions/LRjqWIC2/dragon-movement-fix-1.1.6.jar
+                https://cdn.modrinth.com/data/TjHVU1tK/versions/1YzNJ594/dolphin_fix-1.1-1.21.1.jar
+                https://cdn.modrinth.com/data/Vq1i7Hy0/versions/xKtSzP4U/Potion%20level%20fix-neoforge-1.21.1-1.6.jar
+                https://cdn.modrinth.com/data/Z5GdSH3X/versions/XR4FbmXL/crashexploitfixer-neoforge-1.1.0%2B1.21.jar
+                https://cdn.modrinth.com/data/rd9rKuJT/versions/yjTKEIL5/disconnect-packet-fix-neoforge-2.0.1.jar
+                https://cdn.modrinth.com/data/w2O2In9c/versions/DEPzHzvr/worldgenfeaturefix-neoforge-1.21-1.0.1.jar
+                https://cdn.modrinth.com/data/xedaBnSm/versions/y2wCW8V6/papi-1.21.1-neoforge-1.1.1.jar
+
+                # (lib) https://cdn.modrinth.com/data/MBAkmtvl/versions/XC1JUHmA/balm-neoforge-1.21.1-21.0.57.jar
+                https://cdn.modrinth.com/data/nPZr02ET/versions/O09BGtgh/netherportalfix-neoforge-1.21.1-21.1.1.jar
+
+                # --- Optimization 1 ---
+                https://cdn.modrinth.com/data/2eT495vq/versions/V5lIEjKs/saturn-mc1.21.1-0.1.5.jar
+                https://cdn.modrinth.com/data/2ecVyZ49/versions/kL32PN9Q/Ksyxis-1.4.3.jar
+                https://cdn.modrinth.com/data/4WWQxlQP/versions/77MAnmOn/servercore-neoforge-1.5.10%2B1.21.1.jar
+                https://cdn.modrinth.com/data/COlSi5iR/versions/9iPiN34N/c2me-neoforge-mc1.21.1-0.3.0%2Balpha.0.91.jar
+                https://cdn.modrinth.com/data/DSVgwcji/versions/dGNP90t0/AI-Improvements-1.21-0.5.3.jar
+                https://cdn.modrinth.com/data/OnlVIpq5/versions/tGdbMrnn/zfastnoise-1.0.11a%2B1.21%2Bneoforge.jar
+                https://cdn.modrinth.com/data/Ps1zyz6x/versions/j10HNoNf/ScalableLux-0.1.0.1%2Bneoforge.1cb1e91-all.jar
+                https://cdn.modrinth.com/data/T0OUgf8P/versions/K4TUzlwa/getittogetherdrops-neoforge-1.21.5-1.4.jar
+                https://cdn.modrinth.com/data/Wnxd13zP/versions/jo7lDoK4/Clumps-neoforge-1.21.1-19.0.0.1.jar
+                https://cdn.modrinth.com/data/g96Z4WVZ/versions/S2qthD5S/BadOptimizations-2.4.1-1.21.1.jar
+                https://cdn.modrinth.com/data/gk3B4zrk/versions/717SN7LP/SmoothBoot-NeoForge%2B1.21-1.0.0.jar
+                https://cdn.modrinth.com/data/gvQqBUqZ/versions/RXHf27Wv/lithium-neoforge-0.15.3%2Bmc1.21.1.jar
+                https://cdn.modrinth.com/data/nmDcB62a/versions/QbebWhuK/modernfix-neoforge-5.27.3%2Bmc1.21.1.jar
+                https://cdn.modrinth.com/data/r0v8vy1s/versions/PCNyL6v4/alternate_current-mc1.21-1.9.0.jar
+                https://cdn.modrinth.com/data/uXXizFIs/versions/x7kQWVju/ferritecore-7.0.3-neoforge.jar
+
+                # (lib) https://cdn.modrinth.com/data/Gi02250Z/versions/cHGan9fQ/Almanac-1.21.1-2-neoforge-1.5.2.jar
+                https://cdn.modrinth.com/data/vE2FN5qn/versions/fgcMDg9B/letmedespawn-1.21.x-neoforge-1.5.0.jar
+
+                https://cdn.modrinth.com/data/vEC2jm6I/versions/pP8zrgTu/async-neoforge-0.2.0%2Balpha-1.21.1.jar
+                https://mediafilez.forgecdn.net/files/7937/266/threadtweak-1.21.1-NeoForge-1.0.0.jar
+
+                # (lib) https://cdn.modrinth.com/data/s6dgwBzy/versions/FRTVjpTz/Daisy-neoforge-1.0.2-test.jar
+                https://cdn.modrinth.com/data/kIfxYoGs/versions/fz24WWx1/Annuus-neoforge-1.0.16-fix2.jar
+
+                https://mediafilez.forgecdn.net/files/6751/534/FastWorkbench-1.21.1-9.1.3.jar
+                https://mediafilez.forgecdn.net/files/6751/551/FastFurnace-1.21.1-9.0.1.jar
+                https://mediafilez.forgecdn.net/files/7527/945/FastSuite-1.21.1-6.0.7.jar
+
+                https://mediafilez.forgecdn.net/files/5570/957/dynview-1.21-4.0.jar
+                https://mediafilez.forgecdn.net/files/5571/339/limitedchunks-1.21-4.1.jar
+                https://mediafilez.forgecdn.net/files/6210/181/betterchunkloading-1.21-5.4.jar
+                https://mediafilez.forgecdn.net/files/6296/628/smoothchunk-1.21-4.1.jar
+                https://mediafilez.forgecdn.net/files/6935/204/fastasyncworldsave-1.21-2.6.jar
+                https://mediafilez.forgecdn.net/files/7367/221/connectivity-1.21.1-7.6.jar
+                https://mediafilez.forgecdn.net/files/7392/199/leaky-1.21-2.4.jar
+                https://mediafilez.forgecdn.net/files/7640/87/smoothmovement-1.21.1-2.7.jar
+                https://mediafilez.forgecdn.net/files/7746/488/cupboard-1.21-3.5.jar
+                https://mediafilez.forgecdn.net/files/7926/632/chunksending-1.21-2.9.jar
+                https://mediafilez.forgecdn.net/files/7934/534/memorysettings-1.21-6.0.jar
+
+                # --- Optimization 2 ---
+                # https://cdn.modrinth.com/data/oPwMsrcf/versions/T0bGa7Hg/FTBQuestsOptimizer-neoforge-3.2.0-1.21.1.jar
+                https://cdn.modrinth.com/data/JkxWVYwU/versions/SUeOFygw/krypton_fnp-neoforge-1.21.1-0.2.28.1-1.21.1.jar
+                https://cdn.modrinth.com/data/Nmc13D4j/versions/k8q5lCJD/recipefixer-1.0.0.jar
+                https://cdn.modrinth.com/data/SvXrP8rT/versions/qHMtEGz4/AchievementOptimizer-neoforge-1.21.1-2.1.0.jar
+                https://cdn.modrinth.com/data/YS3ZignI/versions/BAEuKWlt/tt20-0.8.0%2Bmc1.21.1-neoforge.jar
+                https://cdn.modrinth.com/data/c7m1mi73/versions/2C41Q8WX/packetfixer-3.3.1-1.20.5-1.21.X-merged.jar
+                https://cdn.modrinth.com/data/c7sFoV9J/versions/tbBqTIJY/NotEnoughBandwidth-0.3.18%2Bprototype%2Bteacon.jar
+                https://cdn.modrinth.com/data/mMXtqi5e/versions/B7hrUht3/acceleratedrecoiling-21.1.11-alpha-hotfix.jar
+                https://cdn.modrinth.com/data/pSISfJ4O/versions/A5J7bhL4/quick-pack-neoforge-1.3.2%2B1.21.8.jar
+                https://cdn.modrinth.com/data/qExiachl/versions/Fvdw6FwZ/fastrecipesearch-1.21.1-1.7-neoforge.jar
+                https://cdn.modrinth.com/data/vNZgQmjg/versions/6L9QZsxY/immersive_optimization-neoforge-1.21-0.1.4.jar
+                https://cdn.modrinth.com/data/zEcqovh2/versions/p3GwChMK/efficient_hashing-neoforge-1.0.0%2B1.21.1-mod.jar
+
+                # (lib) https://cdn.modrinth.com/data/lhGA9TYQ/versions/ZxYGwlk0/architectury-13.0.8-neoforge.jar
+                https://cdn.modrinth.com/data/1Bm2WDXm/versions/jfpYPsMk/NumFlux-1.0.2-1.21-1.21.1.jar
+
+                # (lib) https://cdn.modrinth.com/data/M1953qlQ/versions/lSbyRD6v/resourcefulconfig-neoforge-1.21-3.0.11.jar
+                https://cdn.modrinth.com/data/ayPU0OHc/versions/eTz03Gfd/structure_layout_optimizer-neoforge-1.0.12.jar
+
+                # (lib) https://cdn.modrinth.com/data/vBbPDuOs/versions/M1CyD3Uu/txnilib-neoforge-1.0.24-1.21.1.jar
+                https://cdn.modrinth.com/data/hhnR8xqU/versions/B9DLRbbX/redirected-neoforge-1.0.0-1.21.1.jar
+
+                # --- Tools ---
+                # (lib) https://cdn.modrinth.com/data/lhGA9TYQ/versions/ZxYGwlk0/architectury-13.0.8-neoforge.jar
+                # (lib) https://cdn.modrinth.com/data/ordsPcFz/versions/NrSebcsG/kotlinforforge-5.11.0-all.jar
+                # https://cdn.modrinth.com/data/VfHc5JEX/versions/56xL4i2r/chunky-offline-v1.1.0.jar
+                https://cdn.modrinth.com/data/VYRu7qmG/versions/f8lSH3bs/observable-5.4.4.jar
+                https://cdn.modrinth.com/data/WroB6oX2/versions/feulldQR/section31-0.1.2.jar
+                https://cdn.modrinth.com/data/XqqOkvZz/versions/lnOeoKcQ/neoforge-carpet-1.21.1-1.0.8%2Bv251027.jar
+                https://cdn.modrinth.com/data/cUhi3iB2/versions/JkFbz8lE/tabtps-neoforge-mc1.21.1-1.3.25.jar
+                https://cdn.modrinth.com/data/fALzjamp/versions/LuFhm4eU/Chunky-NeoForge-1.4.23.jar
+                https://cdn.modrinth.com/data/l6YH9Als/versions/v5qtqRQi/spark-1.10.124-neoforge.jar
+
+            RESOURCE_PACK: ''
+            RESOURCE_PACK_SHA1: ''
+
+            # --- 自動化指令 ---
+            RCON_CMDS_STARTUP: |-
+
+                gamerule elytra_movement_check false
+                gamerule forgive_dead_players false
+                gamerule global_sound_events false
+                gamerule keep_inventory true
+                gamerule lava_source_conversion true
+                gamerule locator_bar false
+                gamerule player_movement_check false
+                gamerule players_sleeping_percentage 0
+                gamerule show_advancement_messages false
+                gamerule universal_anger true
+                worldborder set 50000
+
+            RCON_CMDS_ON_CONNECT: |-
+
+                tellraw @a [{"text":"\u00bb ","color":"gray"},{"text":"Welcome to ","color":"aqua"},{"text":"Xiao","color":"yellow","bold":true},{"text":" \u00ab","color":"gray"}]
+                playsound minecraft:entity.experience_orb.pickup master @a ~ ~ ~ 1 1
