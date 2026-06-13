@@ -1,6 +1,14 @@
 import * as crypto from 'crypto';
 import * as path from 'path';
 
+// Restores any escaped unicode placeholder like __UNICODE_HEX_25cf_0__ back to its actual Unicode symbol (e.g. "●").
+// This prevents system preservation placeholders from leaking into the output translation files.
+function restoreUnicodePlaceholders(s: string): string {
+	return s.replace(/__UNICODE_HEX_([0-9a-fA-F]{4})_\d+__/g, (match, hex) => {
+		return String.fromCharCode(parseInt(hex, 16));
+	});
+}
+
 export class TranslationManager {
 	private translations: Map<string, Map<string, string>> = new Map(); // langCode -> (key -> value)
 	private keyToContext: Map<string, string> = new Map(); // key -> context description
@@ -70,6 +78,9 @@ export class TranslationManager {
 			return this.valueToKey.get(fileScopeKey)!;
 		}
 
+		// Restore any unicode placeholders to actual symbols for storing in lang/main.json
+		const restoredValue = restoreUnicodePlaceholders(cleanValue);
+
 		// Clean up JSON path parts to be valid key segments
 		const cleanJsonPath = jsonPath
 			.map((p) => p.replace(/[^a-zA-Z0-9_]/g, '_'))
@@ -91,14 +102,14 @@ export class TranslationManager {
 		}
 
 		// Append a short hash of the value to guarantee uniqueness and prevent collisions
-		const hash = crypto.createHash('sha256').update(cleanValue).digest('hex').substring(0, 8);
+		const hash = crypto.createHash('sha256').update(restoredValue).digest('hex').substring(0, 8);
 		const finalKey = `${baseKey}.${hash}`;
 
 		// Store translation in source language
 		if (!this.translations.has(this.sourceLang)) {
 			this.translations.set(this.sourceLang, new Map());
 		}
-		this.translations.get(this.sourceLang)!.set(finalKey, cleanValue);
+		this.translations.get(this.sourceLang)!.set(finalKey, restoredValue);
 		this.valueToKey.set(fileScopeKey, finalKey);
 
 		// Store context description for translators
@@ -113,10 +124,11 @@ export class TranslationManager {
 		if (!this.translations.has(code)) {
 			this.translations.set(code, new Map());
 		}
-		this.translations.get(code)!.set(key, value);
+		const restoredValue = restoreUnicodePlaceholders(value);
+		this.translations.get(code)!.set(key, restoredValue);
 
 		if (code === this.sourceLang) {
-			this.valueToKey.set(value, key);
+			this.valueToKey.set(restoredValue, key);
 		}
 
 		const contextDesc = `File: ${filePath}, Path: ${jsonPath.join(' -> ')}`;
