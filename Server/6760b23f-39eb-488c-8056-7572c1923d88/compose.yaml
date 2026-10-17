@@ -1,0 +1,51 @@
+services:
+  6760b23f-39eb-488c-8056-7572c1923d88:
+    container_name: 6760b23f-39eb-488c-8056-7572c1923d88
+    image: itzg/minecraft-server:java25-graalvm
+    tty: true
+    stdin_open: true
+    volumes:
+      - /home/data/6760b23f-39eb-488c-8056-7572c1923d88:/data
+    environment:
+      EULA: true
+      TYPE: CUSTOM
+      CUSTOM_SERVER: https://api.leafmc.one/v2/projects/leaf/versions/26.2/builds/64/downloads/leaf-26.2-64.jar
+      MEMORY: 2048M
+      JVM_OPTS: --add-modules=jdk.incubator.vector -javaagent:plugins/ChunkGuardAgent-26.2-1.jar -javaagent:plugins/LazyContainerAgent.jar
+      JVM_DD_OPTS: Leaf.disable-vanilla-debug-feature=true,Leaf.disable-vanilla-profiler=true,Leaf.enable-io-uring=true,Leaf.enableFMA=true
+      JVM_XX_OPTS: -XX:+UnlockExperimentalVMOptions -XX:+UseCompactObjectHeaders -XX:TrimNativeHeapInterval=5000
+      USE_AIKAR_FLAGS: false
+      USE_MEOWICE_FLAGS: true
+      ALLOW_FLIGHT: true
+      DIFFICULTY: normal
+      MAX_CHAINED_NEIGHBOR_UPDATES: 10000
+      MAX_TICK_TIME: -1
+      NETWORK_COMPRESSION_THRESHOLD: -1
+      ONLINE_MODE: false
+      PAUSE_WHEN_EMPTY_SECONDS: -1
+      SIMULATION_DISTANCE: 8
+      VIEW_DISTANCE: 8
+      PLUGINS: |-
+        # https://cdn.modrinth.com/data/7j6Y3FaT/versions/BlbpHoAh/SimpleCometElevator-1.1.0-1.21.x.jar
+        # https://cdn.modrinth.com/data/Lu3KuzdV/versions/Kma0kBsY/CoreProtect-CE-24.0.jar
+        # https://cdn.modrinth.com/data/fD1X4Kwd/versions/Z64gyggx/LagFixer-1.6.6.jar
+        # https://raw.githubusercontent.com/Rayfor000/test/main/fake-player-plugin-1.6.6.12.1.jar
+        https://cdn.modrinth.com/data/EPmUAUrT/versions/yua81Km3/lightningKill-3.0.jar
+        https://cdn.modrinth.com/data/EvVFOxS1/versions/7v2aBGmj/UnlockAllRecipes-1.0.1.1.jar
+        https://cdn.modrinth.com/data/J6U9o3JG/versions/O4s0wwjq/HuskHomes-Paper-4.11-ab42970.jar
+        https://cdn.modrinth.com/data/OhduvhIc/versions/VPV4C6uD/veinminer-paper-2.11.2.jar
+        https://cdn.modrinth.com/data/PRPxdqGc/versions/B413Gy6Q/ESU-bukkit-1.1.0.jar
+        https://cdn.modrinth.com/data/XMQtfIwI/versions/1FADXK4e/InfiniteHomes-1.2.jar
+        https://cdn.modrinth.com/data/XWKWAzd8/versions/2JWRgmoZ/InventoryRollbackPlus-1.8.4.jar
+        https://cdn.modrinth.com/data/cAKWMnas/versions/YFEmjhU3/TPAPlugin-1.2.jar
+        https://cdn.modrinth.com/data/oioBwOz4/versions/bJZvzm5F/fake-player-plugin-2.0.4.jar
+        https://cdn.modrinth.com/data/vdNwyPFz/versions/tmiNkQj0/BetterMending-3.1.0.jar
+        https://github.com/DVDishka/Backuper/releases/download/4.0.6/Backuper-4.0.6.jar
+        https://github.com/Jikoo/OpenInv/releases/download/5.3.3/OpenInv.jar
+        https://github.com/SkinsRestorer/SkinsRestorer/releases/download/15.12.4/SkinsRestorer.jar
+        https://github.com/ViaVersion/ViaBackwards/releases/download/5.11.0/ViaBackwards-5.11.0.jar
+        https://github.com/ViaVersion/ViaVersion/releases/download/5.11.0/ViaVersion-5.11.0.jar
+        https://github.com/kuohsuanlo/ChunkGuardAgent/releases/download/26.2/ChunkGuardAgent-26.2-1.jar
+        https://github.com/kuohsuanlo/LazyContainerAgent/releases/download/v26.2-3/LazyContainerAgent.jar
+        https://github.com/retrooper/packetevents/releases/download/v2.13.0/packetevents-spigot-2.13.0.jar
+        https://hangarcdn.papermc.io/plugins/pop4959/Chunky/versions/1.5.3/PAPER/Chunky-Bukkit-1.5.3.jar
